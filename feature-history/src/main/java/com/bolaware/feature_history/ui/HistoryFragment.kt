@@ -1,7 +1,6 @@
 package com.bolaware.feature_history.ui
 
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.bolaware.core.theme.AppTheme
-import com.bolaware.data.transcript.Transcript
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,6 +59,18 @@ private fun HistoryScreen(viewModel: HistoryViewModel = hiltViewModel()) {
 
     val transcripts by viewModel.transcripts.collectAsState()
 
+    HistoryContent(transcripts) {
+        viewModel.deleteTranscript(it)
+    }
+}
+
+
+@Composable
+private fun HistoryContent(
+    transcripts: List<TranscriptUi>,
+    onTranscriptDelete: (TranscriptUi) -> Unit
+) {
+
     Surface(color = MaterialTheme.colorScheme.background) {
         if (transcripts.isEmpty()) {
             EmptyState()
@@ -69,7 +79,7 @@ private fun HistoryScreen(viewModel: HistoryViewModel = hiltViewModel()) {
                 items(transcripts, key = { transcript -> transcript.id }) { transcript ->
                     TranscriptCard(
                         transcript = transcript,
-                        onDelete = { viewModel.deleteTranscript(transcript) }
+                        onDelete = { onTranscriptDelete(transcript) }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -80,7 +90,7 @@ private fun HistoryScreen(viewModel: HistoryViewModel = hiltViewModel()) {
 
 @Composable
 private fun TranscriptCard(
-    transcript: Transcript,
+    transcript: TranscriptUi,
     onDelete: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -92,7 +102,7 @@ private fun TranscriptCard(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = formatTimestamp(transcript.timestamp),
+                text = transcript.time,
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.secondary
             )
@@ -136,12 +146,4 @@ fun EmptyState() {
             text = "No transcripts available"
         )
     }
-}
-
-private fun formatTimestamp(timestamp: Long): String {
-    return DateUtils.getRelativeTimeSpanString(
-        timestamp,
-        System.currentTimeMillis(),
-        DateUtils.MINUTE_IN_MILLIS
-    ).toString()
 }

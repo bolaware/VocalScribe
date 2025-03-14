@@ -15,7 +15,7 @@ class TranscriptRepository @Inject constructor(private val dao: TranscriptDao) {
         return dao.getAllTranscripts()
     }
 
-    suspend fun deleteTranscript(transcript: Transcript) {
-        dao.deleteTranscript(transcript)
+    suspend fun deleteTranscript(transcriptId: Int) {
+        dao.deleteTranscriptById(transcriptId)
     }
 }

@@ -13,7 +13,7 @@ class TranscriptInteractor @Inject constructor(
         return transcriptRepository.getTranscripts()
     }
 
-    suspend fun deleteTranscript(transcript: Transcript) {
-        return transcriptRepository.deleteTranscript(transcript)
+    suspend fun deleteTranscript(id: Int) {
+        return transcriptRepository.deleteTranscript(id)
     }
 }

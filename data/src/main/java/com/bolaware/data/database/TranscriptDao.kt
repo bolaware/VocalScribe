@@ -12,6 +12,6 @@ interface TranscriptDao {
     @Query("SELECT * FROM transcripts ORDER BY timestamp DESC")
     fun getAllTranscripts(): Flow<List<Transcript>>
 
-    @Delete
-    suspend fun deleteTranscript(transcript: Transcript)
+    @Query("DELETE FROM transcripts WHERE id = :id")
+    suspend fun deleteTranscriptById(id: Int)
 }
