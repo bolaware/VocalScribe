@@ -63,7 +63,7 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.bolaware.core.theme.AppTheme
 import com.bolaware.core.theme.SunRed
-import com.bolaware.core.theme.ui.AutoScrollingTextField
+import com.bolaware.core.ui.AutoScrollingTextField
 import com.bolaware.feature_home.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted

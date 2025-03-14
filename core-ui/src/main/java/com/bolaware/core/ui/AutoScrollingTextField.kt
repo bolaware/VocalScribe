@@ -1,4 +1,4 @@
-package com.bolaware.core.theme.ui
+package com.bolaware.core.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
