@@ -9,8 +9,10 @@ import com.bolaware.feature_home.domain.TranscriptInteractor
 import com.bolaware.speechrecognizer.SpeechListener
 import com.bolaware.speechrecognizer.SpeechRecognizer
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,6 +29,9 @@ class HomeViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
+
+    private val _event = MutableSharedFlow<HomeEvent>()
+    val event = _event.asSharedFlow()
 
     init {
         initializeLanguageSettings()
@@ -134,6 +139,7 @@ class HomeViewModel @Inject constructor(
             transcriptInteractor.saveTranscript(state.value.text)
             speechConcatenator.clear()
             _state.update { it.copy(recordState = RecordState.Idle(), text = "") }
+            _event.emit(HomeEvent.Snackbar("Transcript saved successfully"))
         }
     }
 

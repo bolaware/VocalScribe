@@ -44,3 +44,7 @@ sealed interface RecordState {
     data object Listening : RecordState
     data object Saving : RecordState
 }
+
+sealed interface HomeEvent {
+    data class Snackbar(val message: String): HomeEvent
+}

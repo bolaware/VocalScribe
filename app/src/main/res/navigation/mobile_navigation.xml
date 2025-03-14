@@ -11,6 +11,6 @@
 
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.bolaware.feature_history.HistoryFragment"
+        android:name="com.bolaware.feature_history.ui.HistoryFragment"
         android:label="@string/title_history" />
 </navigation>

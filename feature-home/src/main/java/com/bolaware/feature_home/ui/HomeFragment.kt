@@ -38,6 +38,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -48,6 +50,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -69,6 +72,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -91,8 +95,22 @@ class HomeFragment : Fragment() {
 private fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     var requestedPermission by rememberSaveable { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(viewModel.event) {
+        viewModel.event.collect {
+            when (it) {
+                is HomeEvent.Snackbar -> {
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(it.message)
+                    }
+                }
+            }
+        }
+    }
 
     HomeContent(
         state = state,
@@ -121,6 +139,15 @@ private fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     state.alertDialogState?.let {
         AlertDialogContent(it) { viewModel.dismissDialog()  }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(16.dp)
+        )
     }
 }
 
