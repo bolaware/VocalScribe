@@ -1,0 +1,74 @@
+[versions]
+agp = "8.8.0-rc02"
+kotlin = "2.0.0"
+coreKtx = "1.15.0"
+datastore = "1.0.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+accompanist = "0.34.0"
+constraintlayout = "2.2.0"
+lifecycleLivedataKtx = "2.8.7"
+lifecycleViewmodelKtx = "2.8.7"
+navigationFragmentKtx = "2.8.8"
+navigationUiKtx = "2.8.8"
+hilt = "2.50"
+hiltNavigationCompose = "1.1.0"
+
+composebom = "2025.03.00" # Jetpack Compose BOM version
+composeActivity = "1.10.1" # Activity Compose version
+composeNavigation = "2.8.8" # Navigation Compose version
+lifecycle = "2.8.7" # Lifecycle ViewModel version
+
+voskAndroid = "0.3.47"
+
+timber = "5.0.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+# Jetpack Compose BOM (Manages Compose versions)
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composebom" }
+# Core Compose UI libraries
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+# Jetpack Compose Activity integration
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
+# Jetpack Compose ViewModel integration
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+# Jetpack Compose Navigation
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
+# Debug dependencies
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+# Speech recognition
+vosk-android = { module = "com.alphacephei:vosk-android", version.ref = "voskAndroid" }
+# Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+#accompanist
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+# Jetpack Datastore
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
