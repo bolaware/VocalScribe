@@ -1,6 +1,5 @@
 package com.bolaware.data.languages
 
-import com.bolaware.data.Language
 import javax.inject.Inject
 
 class LanguagesRepository @Inject constructor() {

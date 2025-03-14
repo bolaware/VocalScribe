@@ -21,8 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "VocalScribe"
 include(":app")
-include(":feature-settings")
-include(":setting")
+include(":feature-home")
 include(":feature-history")
 include(":core-ui")
 include(":speechrecognizer")

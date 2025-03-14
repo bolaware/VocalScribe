@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
     kotlin("kapt")
 }
 
@@ -53,27 +55,13 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    implementation(project(":feature-settings"))
+    implementation(project(":feature-home"))
     implementation(project(":feature-history"))
     implementation(project(":core-ui"))
-    implementation(project(":data"))
-
-    implementation(project(":speechrecognizer"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-
-    implementation(libs.accompanist.permissions)
-
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material3)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.activity)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.compose.navigation)
-    debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.timber)
 
