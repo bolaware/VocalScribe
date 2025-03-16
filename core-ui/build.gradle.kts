@@ -44,7 +44,7 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.activity)
     implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.compose.navigation)
+    implementation(libs.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.androidx.core.ktx)

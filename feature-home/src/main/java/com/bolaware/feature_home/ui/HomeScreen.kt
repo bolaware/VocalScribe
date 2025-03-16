@@ -1,10 +1,6 @@
 package com.bolaware.feature_home.ui
 
 import android.Manifest
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -58,41 +54,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.bolaware.core.theme.AppTheme
 import com.bolaware.core.theme.SunRed
 import com.bolaware.core.ui.AutoScrollingTextField
 import com.bolaware.feature_home.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-@AndroidEntryPoint
-class HomeFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return ComposeView(requireContext()).apply {
-            setContent {
-                AppTheme { HomeScreen() }
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-private fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     var requestedPermission by rememberSaveable { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
@@ -162,46 +139,44 @@ private fun HomeContent(
     onSaveClicked: () -> Unit,
     onLanguageSelected: (LanguageUi) -> Unit
 ) {
-    Surface(color = MaterialTheme.colorScheme.background) {
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.Center
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        LanguageSelector(
+            modifier = Modifier.align(Alignment.TopEnd),
+            state = state,
+            onLanguageSelected = onLanguageSelected
+        )
+
+        Column(
+            modifier = Modifier
+                .imePadding()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(30.dp)
         ) {
-            LanguageSelector(
-                modifier = Modifier.align(Alignment.TopEnd),
-                state = state,
-                onLanguageSelected = onLanguageSelected
-            )
+            AnimatedVisibility(state.showTextField) {
+                AutoScrollingTextField(
+                    text,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    onTextChange = onTextChange
+                )
+            }
 
-            Column(
-                modifier = Modifier
-                    .imePadding()
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(30.dp)
-            ) {
-                AnimatedVisibility(state.showTextField) {
-                    AutoScrollingTextField(
-                        text,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp),
-                        onTextChange = onTextChange
-                    )
+            if (state.showMicButton) {
+                MicButton(
+                    isAnimating = state.isListening,
+                    isLoading = state.isMicLoading
+                ) {
+                    onMicClicked()
                 }
+            }
 
-                if (state.showMicButton) {
-                    MicButton(
-                        isAnimating = state.isListening,
-                        isLoading = state.isMicLoading
-                    ) {
-                        onMicClicked()
-                    }
-                }
-
-                if (state.showClearSaveButton) {
-                    ClearSaveButton(onClearClicked, onSaveClicked)
-                }
+            if (state.showClearSaveButton) {
+                ClearSaveButton(onClearClicked, onSaveClicked)
             }
         }
     }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HistoryViewModel @Inject constructor(
+class TranscriptHistoryViewModel @Inject constructor(
     private val transcriptInteractor: TranscriptInteractor,
     private val timestampFormatter: TimestampFormatter
 ) : ViewModel() {

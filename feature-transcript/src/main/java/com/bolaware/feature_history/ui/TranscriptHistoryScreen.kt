@@ -1,9 +1,5 @@
 package com.bolaware.feature_history.ui
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -30,32 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.bolaware.core.theme.AppTheme
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class HistoryFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return ComposeView(requireContext()).apply {
-            setContent {
-                AppTheme { HistoryScreen() }
-            }
-        }
-    }
-}
 
 @Composable
-private fun HistoryScreen(viewModel: HistoryViewModel = hiltViewModel()) {
+fun TranscriptHistoryScreen(viewModel: TranscriptHistoryViewModel = hiltViewModel()) {
 
     val transcripts by viewModel.transcripts.collectAsState()
 
@@ -71,18 +46,16 @@ private fun HistoryContent(
     onTranscriptDelete: (TranscriptUi) -> Unit
 ) {
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        if (transcripts.isEmpty()) {
-            EmptyState()
-        } else {
-            LazyColumn(modifier = Modifier.padding(16.dp)) {
-                items(transcripts, key = { transcript -> transcript.id }) { transcript ->
-                    TranscriptCard(
-                        transcript = transcript,
-                        onDelete = { onTranscriptDelete(transcript) }
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+    if (transcripts.isEmpty()) {
+        EmptyState()
+    } else {
+        LazyColumn(modifier = Modifier.padding(16.dp)) {
+            items(transcripts, key = { transcript -> transcript.id }) { transcript ->
+                TranscriptCard(
+                    transcript = transcript,
+                    onDelete = { onTranscriptDelete(transcript) }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }

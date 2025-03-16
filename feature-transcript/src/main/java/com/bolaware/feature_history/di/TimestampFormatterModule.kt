@@ -5,15 +5,15 @@ import com.bolaware.feature_history.timestamp.TimestampFormatter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
-object FormatterModule {
+@InstallIn(ViewModelComponent::class)
+object TimestampFormatterModule {
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideTimestampFormatter(): TimestampFormatter {
         return AndroidTimestampFormatter()
     }

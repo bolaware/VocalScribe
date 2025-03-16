@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
     kotlin("kapt")
+
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -48,8 +50,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.compose)
 
     implementation(project(":core-ui"))
     implementation(project(":data"))
@@ -68,10 +72,12 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.activity)
     implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.compose.navigation)
+    implementation(libs.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.timber)
+
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -22,7 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "VocalScribe"
 include(":app")
 include(":feature-home")
-include(":feature-history")
+include(":feature-transcript")
 include(":core-ui")
 include(":speechrecognizer")
 include(":models")
