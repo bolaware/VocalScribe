@@ -39,18 +39,16 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun initializeLanguageSettings() {
-        viewModelScope.launch {
-            languageInteractor.getSelectedLanguage().collect { language ->
-                _state.update {
-                    it.copy(
-                        languages = languageInteractor.getSupportedLanguages().map {
-                            LanguageUi(language = it, isSelected = language == it)
-                        }
-                    )
-                }
-                initializeSpeechRecognizer(language)
+        languageInteractor.getSelectedLanguage().onEach { language ->
+            _state.update { selectedLanguage ->
+                selectedLanguage.copy(
+                    languages = languageInteractor.getSupportedLanguages().map {
+                        LanguageUi(language = it, isSelected = language == it)
+                    }
+                )
             }
-        }
+            initializeSpeechRecognizer(language)
+        }.launchIn(viewModelScope)
     }
 
     private suspend fun initializeSpeechRecognizer(language: Language) {
@@ -62,9 +60,9 @@ class HomeViewModel @Inject constructor(
                     text = "Sorry. We could not initialize all necessary parameters. Please try again",
                     isDismissable = true,
                     positive = AlertDialogAction(
-                        "Retry", { viewModelScope.launch { initializeSpeechRecognizer(language) } }
-                    ),
-                    negative = AlertDialogAction("Cancel", { dismissDialog() })
+                        "Retry"
+                    ) { viewModelScope.launch { initializeSpeechRecognizer(language) } },
+                    negative = AlertDialogAction("Cancel") { dismissDialog() }
                 )
             )
         }
@@ -75,21 +73,21 @@ class HomeViewModel @Inject constructor(
         _state.update { it.copy(text = text) }
     }
 
+
     fun onMicClicked() {
         _state.update {
             it.copy(
                 recordState = when (it.recordState) {
-                    is RecordState.Idle -> {
-                        startListener()
-                        RecordState.Listening
-                    }
-                    RecordState.Listening -> {
-                        stopListener()
-                        RecordState.Saving
-                    }
+                    is RecordState.Idle -> RecordState.Listening
+                    RecordState.Listening -> RecordState.Saving
                     else -> RecordState.Idle(false)
                 }
             )
+        }
+        when (_state.value.recordState) {
+            RecordState.Listening -> startListener()
+            RecordState.Saving -> stopListener()
+            else -> Unit
         }
     }
 

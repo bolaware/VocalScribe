@@ -40,7 +40,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    tasks.withType<Test>().configureEach {
+        jvmArgs("-XX:+EnableDynamicAgentLoading")
+    }
 }
+
+
 
 dependencies {
 
@@ -79,6 +85,9 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
