@@ -6,7 +6,6 @@ import com.bolaware.data.languages.Language
 import com.bolaware.feature_home.domain.SpeechConcatenator
 import com.bolaware.feature_home.domain.LanguageInteractor
 import com.bolaware.feature_home.domain.TranscriptInteractor
-import com.bolaware.speechrecognizer.SpeechListener
 import com.bolaware.speechrecognizer.SpeechRecognizer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,9 +13,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -93,29 +94,28 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun startListener() {
-        speechRecognizer.listen(object : SpeechListener {
-            override fun onHypothesis(text: String) {
-                speechConcatenator.addString(text, true)
-                _state.update { it.copy(text = speechConcatenator.getConcatenatedText()) }
-            }
-
-            override fun onFinal(text: String) {
-                speechConcatenator.addString(text, false)
-                _state.update { it.copy(text = speechConcatenator.getConcatenatedText()) }
-            }
-
-            override fun onError(exception: Exception) {
+        speechRecognizer
+            .listen()
+            .catch {
                 showAlertDialogState(
                     AlertDialogState(
                         title = "Error occurred!",
                         text = "Sorry. An error occurred while transcribing",
                         isDismissable = false,
-                        positive = AlertDialogAction("Retry", { dismissDialog() }),
-                        negative = AlertDialogAction("Cancel", { dismissDialog() })
+                        positive = AlertDialogAction("Retry") { dismissDialog() },
+                        negative = AlertDialogAction("Cancel") { dismissDialog() }
                     )
                 )
-            }
-        })
+            }.onEach { result ->
+                result.hypothesis?.let { text ->
+                    speechConcatenator.addString(text, true)
+                    _state.update { it.copy(text = speechConcatenator.getConcatenatedText()) }
+                }
+                result.finalResult?.let { text ->
+                    speechConcatenator.addString(text, false)
+                    _state.update { it.copy(text = speechConcatenator.getConcatenatedText()) }
+                }
+            }.launchIn(viewModelScope)
     }
 
     private fun stopListener() {

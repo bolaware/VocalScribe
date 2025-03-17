@@ -2,6 +2,11 @@ package com.bolaware.speechrecognizer
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
 import org.vosk.Model
 import org.vosk.Recognizer
 import org.vosk.android.RecognitionListener
@@ -43,47 +48,49 @@ internal class SpeechRecognizerImpl @Inject constructor(
         }
     }
 
-    override fun listen(listener: SpeechListener) {
+    override fun listen(): Flow<SpeechResult> = callbackFlow {
         try {
             val rec = Recognizer(model, 16000.0f)
             speechService = SpeechService(rec, 16000.0f)
-            speechService.startListening(object : RecognitionListener {
+
+            val listener = object : RecognitionListener {
                 override fun onPartialResult(hypothesis: String?) {
-                    if (hypothesis != null) {
-                        jsonTextExtractor.extractText(hypothesis)?.let {
-                            listener.onHypothesis(it)
-                        }
+                    hypothesis?.let { jsonTextExtractor.extractText(it) }?.let {
+                        trySend(SpeechResult(hypothesis = it))
                     }
                 }
 
                 override fun onResult(hypothesis: String?) {
-                    if (hypothesis != null) {
-                        jsonTextExtractor.extractText(hypothesis)?.let {
-                            listener.onFinal(it)
-                        }
+                    hypothesis?.let { jsonTextExtractor.extractText(it) }?.let {
+                        trySend(SpeechResult(finalResult = it))
                     }
                 }
 
                 override fun onFinalResult(hypothesis: String?) {
-                    if (hypothesis != null) {
-                        jsonTextExtractor.extractText(hypothesis)?.let {
-                            listener.onFinal(it)
-                        }
+                    hypothesis?.let { jsonTextExtractor.extractText(it) }?.let {
+                        trySend(SpeechResult(finalResult = it))
                     }
                 }
 
                 override fun onError(exception: Exception?) {
-                    exception?.let { listener.onError(it) }
+                    close(exception ?: IOException("Unknown speech recognition error"))
                 }
 
                 override fun onTimeout() {
-                    listener.onError(TimeoutException())
+                    close(TimeoutException("Speech recognition timeout"))
                 }
-            })
+            }
+
+            speechService.startListening(listener)
+
+            awaitClose { speechService.stop() }
         } catch (e: IOException) {
-            Timber.e(e, "Failed to set listener")
+            Timber.e(e, "Failed to start listening")
+            close(e)  // Close Flow on failure
         }
     }
+        .catch { e -> Timber.e(e, "Speech recognition error: ${e.message}") }
+        .buffer()
 
     override fun stopListener() {
         speechService.stop()
