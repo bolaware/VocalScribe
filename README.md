@@ -12,8 +12,8 @@ https://github.com/user-attachments/assets/ecd6b516-2444-4d93-8bcd-fc3ca66bdd26
 - **Transcription Management** – Save, view, and delete prior transcriptions
 - **User-Friendly Interface** – Intuitive UI for seamless interaction
 - **Multi-Language Support** – Expandable to additional languages in the future
+- **Dark Mode**
 - **Punctuation Support** *(Coming Soon!)*
-- **Dark Mode** *(Planned Feature)*
 - **Export Options** *(Planned Feature: Export transcripts as TXT, PDF, or share via email/messaging apps)*
 
 ## Technical Breakdown
