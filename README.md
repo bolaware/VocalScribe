@@ -52,7 +52,8 @@ VoiceScribe follows **MVVM (Model-View-ViewModel)** principles to ensure maintai
 
 ### Modules Overview
 
-![VocalScribeArchitecture (1)](https://github.com/user-attachments/assets/ed27060d-0b41-417e-ba6c-ed262b40ca34)
+![Vocal Scribe Architecture Diagram](https://github.com/user-attachments/assets/c98b41d2-88a2-4581-babc-7e3aa7309017)
+
 
 - `:app` – The main Android application
 - `:core-ui` – Base module containing common UI components, styling, and themes
