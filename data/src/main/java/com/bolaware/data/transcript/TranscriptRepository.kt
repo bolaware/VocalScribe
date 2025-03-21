@@ -1,21 +1,30 @@
 package com.bolaware.data.transcript
 
-import com.bolaware.data.database.TranscriptDao
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class TranscriptRepository @Inject constructor(private val dao: TranscriptDao) {
+/**
+ * Repository interface for managing transcript data.
+ */
+interface TranscriptRepository {
 
-    suspend fun saveTranscript(text: String) {
-        val transcript = Transcript(text = text, timestamp = System.currentTimeMillis())
-        dao.insertTranscript(transcript)
-    }
+    /**
+     * Saves a transcript.
+     *
+     * @param text The text content of the transcript to be saved.
+     */
+    suspend fun saveTranscript(text: String)
 
-    fun getTranscripts(): Flow<List<Transcript>> {
-        return dao.getAllTranscripts()
-    }
+    /**
+     * Retrieves a flow of all saved transcripts.
+     *
+     * @return A [Flow] that emits a list of [Transcript] objects.
+     */
+    fun getTranscripts(): Flow<List<Transcript>>
 
-    suspend fun deleteTranscript(transcriptId: Int) {
-        dao.deleteTranscriptById(transcriptId)
-    }
+    /**
+     * Deletes a transcript by its ID.
+     *
+     * @param transcriptId The ID of the transcript to delete.
+     */
+    suspend fun deleteTranscript(transcriptId: Int)
 }

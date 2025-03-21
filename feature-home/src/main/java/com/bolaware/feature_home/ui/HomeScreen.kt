@@ -45,7 +45,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -63,7 +62,6 @@ import com.bolaware.feature_home.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -72,7 +70,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     var requestedPermission by rememberSaveable { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
 
     val state by viewModel.state.collectAsState()
 
@@ -80,9 +77,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         viewModel.event.collect {
             when (it) {
                 is HomeEvent.Snackbar -> {
-                    coroutineScope.launch {
-                        snackbarHostState.showSnackbar(it.message)
-                    }
+                    snackbarHostState.showSnackbar(it.message)
                 }
             }
         }
@@ -168,10 +163,9 @@ private fun HomeContent(
             if (state.showMicButton) {
                 MicButton(
                     isAnimating = state.isListening,
-                    isLoading = state.isMicLoading
-                ) {
-                    onMicClicked()
-                }
+                    isLoading = state.isMicLoading,
+                    onTap = onMicClicked
+                )
             }
 
             if (state.showClearSaveButton) {
