@@ -12,7 +12,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
-internal abstract class RepoModule {
+internal abstract class RepositoryModule {
     @Binds
     @ViewModelScoped
     abstract fun bindLanguagesRepository(
