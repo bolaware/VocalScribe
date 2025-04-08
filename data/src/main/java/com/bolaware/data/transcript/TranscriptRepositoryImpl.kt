@@ -1,10 +1,12 @@
 package com.bolaware.data.transcript
 
+import com.bolaware.core_domain.TranscriptRepository
 import com.bolaware.data.database.TranscriptDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class TranscriptRepositoryImpl @Inject constructor(
+class TranscriptRepositoryImpl @Inject constructor(
     private val dao: TranscriptDao
 ): TranscriptRepository {
 
@@ -13,11 +15,19 @@ internal class TranscriptRepositoryImpl @Inject constructor(
         dao.insertTranscript(transcript)
     }
 
-    override fun getTranscripts(): Flow<List<Transcript>> {
-        return dao.getAllTranscripts()
+    override fun getTranscripts(): Flow<List<com.bolaware.core_domain.TranscriptDomain>> {
+        return dao.getAllTranscripts().map { transcripts -> transcripts.map { it.toDomain() } }
     }
 
     override suspend fun deleteTranscript(transcriptId: Int) {
         dao.deleteTranscriptById(transcriptId)
     }
+}
+
+fun Transcript.toDomain(): com.bolaware.core_domain.TranscriptDomain {
+    return com.bolaware.core_domain.TranscriptDomain(
+        id = id,
+        text = text,
+        timestamp = timestamp
+    )
 }

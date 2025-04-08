@@ -1,6 +1,6 @@
-package com.bolaware.data.languages
+package com.bolaware.feature_home_domain.data
 
-internal data class Language(
+data class LanguageDomain(
     val key: String,
     val fullName: String,
     val modelName: String

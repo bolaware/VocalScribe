@@ -1,9 +1,9 @@
-package com.bolaware.data.di
+package com.bolaware.vocalscribe.di
 
-import com.bolaware.data.languages.LanguagesRepository
+import com.bolaware.core_domain.TranscriptRepository
 import com.bolaware.data.languages.LanguagesRepositoryImpl
-import com.bolaware.data.transcript.TranscriptRepository
 import com.bolaware.data.transcript.TranscriptRepositoryImpl
+import com.bolaware.feature_home_domain.LanguagesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

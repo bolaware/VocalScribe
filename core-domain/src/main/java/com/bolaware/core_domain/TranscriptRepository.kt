@@ -1,4 +1,4 @@
-package com.bolaware.data.transcript
+package com.bolaware.core_domain
 
 import kotlinx.coroutines.flow.Flow
 
@@ -17,9 +17,9 @@ interface TranscriptRepository {
     /**
      * Retrieves a flow of all saved transcripts.
      *
-     * @return A [Flow] that emits a list of [Transcript] objects.
+     * @return A [Flow] that emits a list of [TranscriptDomain] objects.
      */
-    fun getTranscripts(): Flow<List<Transcript>>
+    fun getTranscripts(): Flow<List<TranscriptDomain>>
 
     /**
      * Deletes a transcript by its ID.

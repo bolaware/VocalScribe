@@ -1,13 +1,13 @@
 package com.bolaware.feature_home
 
 import app.cash.turbine.test
-import com.bolaware.data.languages.Language
-import com.bolaware.feature_home.domain.LanguageInteractor
-import com.bolaware.feature_home.domain.SpeechConcatenator
-import com.bolaware.feature_home.domain.TranscriptInteractor
 import com.bolaware.feature_home.ui.HomeViewModel
 import com.bolaware.feature_home.ui.LanguageUi
 import com.bolaware.feature_home.ui.RecordState
+import com.bolaware.feature_home_domain.LanguageInteractor
+import com.bolaware.feature_home_domain.SpeechConcatenator
+import com.bolaware.feature_home_domain.TranscriptInteractor
+import com.bolaware.feature_home_domain.data.LanguageDomain
 import com.bolaware.speechrecognizer.SpeechRecognizer
 import com.bolaware.speechrecognizer.SpeechResult
 import io.mockk.*
@@ -29,17 +29,17 @@ class HomeViewModelTest {
     private lateinit var viewModel: HomeViewModel
 
     private val speechRecognizer: SpeechRecognizer = mockk(relaxed = true)
-    private val speechConcatenator: SpeechConcatenator = SpeechConcatenator()
+    private val speechConcatenator = SpeechConcatenator()
     private val languageInteractor: LanguageInteractor = mockk(relaxed = true)
     private val transcriptInteractor: TranscriptInteractor = mockk(relaxed = true)
 
     @Before
     fun setup() {
-        every { languageInteractor.getSelectedLanguage() } returns flowOf(Language("en", "English", "en"))
+        every { languageInteractor.getSelectedLanguage() } returns flowOf(LanguageDomain("en", "English", "en"))
         every { languageInteractor.getSupportedLanguages() } returns
                 listOf(
-                    Language("en", "English", "en"),
-                    Language("de", "German", "de")
+                    LanguageDomain("en", "English", "en"),
+                    LanguageDomain("de", "German", "de")
                 )
         
         viewModel = HomeViewModel(
@@ -136,7 +136,7 @@ class HomeViewModelTest {
 
     @Test
     fun `onLanguageChoiceSelected updates selected language`() = runTest {
-        val selectedLanguage = LanguageUi(Language("de", "German", "de"), true)
+        val selectedLanguage = LanguageUi(LanguageDomain("de", "German", "de"), true)
         viewModel.onLanguageChoiceSelected(selectedLanguage)
 
         coVerify { languageInteractor.saveLanguageChoice(selectedLanguage.language) }

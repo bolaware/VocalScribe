@@ -62,6 +62,10 @@ dependencies {
     implementation(project(":feature-home"))
     implementation(project(":feature-transcript"))
     implementation(project(":core-ui"))
+    implementation(project(":data"))
+    implementation(project(":core-domain"))
+    implementation(project(":feature-home-domain"))
+    implementation(project(":feature-transcript-domain"))
 
     implementation(libs.hilt.android)
     implementation(libs.androidx.material3.android)

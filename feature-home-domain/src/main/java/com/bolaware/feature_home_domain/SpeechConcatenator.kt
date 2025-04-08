@@ -1,4 +1,4 @@
-package com.bolaware.feature_home.domain
+package com.bolaware.feature_home_domain
 
 import javax.inject.Inject
 import javax.inject.Singleton

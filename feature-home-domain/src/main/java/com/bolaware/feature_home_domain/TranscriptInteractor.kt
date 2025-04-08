@@ -1,6 +1,6 @@
-package com.bolaware.feature_home.domain
+package com.bolaware.feature_home_domain
 
-import com.bolaware.data.transcript.TranscriptRepository
+import com.bolaware.core_domain.TranscriptRepository
 import javax.inject.Inject
 
 class TranscriptInteractor @Inject constructor(

@@ -1,6 +1,6 @@
 package com.bolaware.feature_home.ui
 
-import com.bolaware.data.languages.Language
+import com.bolaware.feature_home_domain.data.LanguageDomain
 
 data class HomeState(
     val text: String = "",
@@ -37,7 +37,7 @@ data class AlertDialogState(
 
 data class AlertDialogAction(val text: String, val onAction: () -> Unit)
 
-data class LanguageUi(val language: Language, val isSelected: Boolean)
+data class LanguageUi(val language: LanguageDomain, val isSelected: Boolean)
 
 sealed interface RecordState {
     data class Idle(val isLoading: Boolean = false) : RecordState

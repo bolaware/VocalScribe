@@ -12,9 +12,9 @@ import javax.inject.Inject
 
 private val Context.dataStore by preferencesDataStore(name = "user_settings")
 
-internal class SettingsManagerImpl @Inject constructor(
+class SettingsManagerImpl @Inject constructor(
     @ApplicationContext val context: Context,
-) : SettingsManager {
+) : com.bolaware.feature_home_domain.SettingsManager {
 
     companion object {
         private val LANGUAGE_KEY = stringPreferencesKey("user_language")

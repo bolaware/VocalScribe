@@ -2,7 +2,7 @@ package com.bolaware.feature_history.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bolaware.feature_history.domain.TranscriptInteractor
+import com.bolaware.feature_transcript_domain.TranscriptInteractor
 import com.bolaware.feature_history.timestamp.TimestampFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

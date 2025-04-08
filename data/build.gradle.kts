@@ -47,10 +47,13 @@ dependencies {
 
     implementation(libs.datastore.preferences)
 
+    implementation(project(":core-domain"))
+    implementation(project(":feature-home-domain"))
+    implementation(project(":feature-transcript-domain"))
+
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -2,10 +2,10 @@ package com.bolaware.feature_home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bolaware.data.languages.Language
-import com.bolaware.feature_home.domain.SpeechConcatenator
-import com.bolaware.feature_home.domain.LanguageInteractor
-import com.bolaware.feature_home.domain.TranscriptInteractor
+import com.bolaware.feature_home_domain.LanguageInteractor
+import com.bolaware.feature_home_domain.SpeechConcatenator
+import com.bolaware.feature_home_domain.TranscriptInteractor
+import com.bolaware.feature_home_domain.data.LanguageDomain
 import com.bolaware.speechrecognizer.SpeechRecognizer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private suspend fun initializeSpeechRecognizer(language: Language) {
+    private suspend fun initializeSpeechRecognizer(language: LanguageDomain) {
         _state.update { it.copy(recordState = RecordState.Idle(true)) }
         speechRecognizer.initialize(language.modelName).onFailure {
             showAlertDialogState(

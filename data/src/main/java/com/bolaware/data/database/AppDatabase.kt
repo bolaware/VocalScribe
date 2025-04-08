@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.bolaware.data.transcript.Transcript
 
 @Database(entities = [Transcript::class], version = 1, exportSchema = false)
-abstract class AppDatabase : RoomDatabase() {
+internal abstract class AppDatabase : RoomDatabase() {
     abstract fun transcriptDao(): TranscriptDao
 
     companion object {

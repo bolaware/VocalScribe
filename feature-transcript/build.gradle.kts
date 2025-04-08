@@ -49,7 +49,8 @@ dependencies {
     implementation(libs.material)
 
     implementation(project(":core-ui"))
-    implementation(project(":data"))
+    implementation(project(":core-domain"))
+    implementation(project(":feature-transcript-domain"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

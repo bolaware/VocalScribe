@@ -1,4 +1,4 @@
-package com.bolaware.data.preferences
+package com.bolaware.feature_home_domain
 
 import kotlinx.coroutines.flow.Flow
 

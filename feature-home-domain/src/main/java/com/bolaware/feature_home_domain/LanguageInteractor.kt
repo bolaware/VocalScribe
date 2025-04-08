@@ -1,8 +1,6 @@
-package com.bolaware.feature_home.domain
+package com.bolaware.feature_home_domain
 
-import com.bolaware.data.languages.Language
-import com.bolaware.data.languages.LanguagesRepository
-import com.bolaware.data.preferences.SettingsManager
+import com.bolaware.feature_home_domain.data.LanguageDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -24,9 +22,9 @@ class LanguageInteractor @Inject constructor(
     /**
      * Retrieves the list of supported languages from the repository.
      *
-     * @return A list of [Language] objects representing available languages.
+     * @return A list of [LanguageDomain] objects representing available languages.
      */
-    fun getSupportedLanguages(): List<Language> {
+    fun getSupportedLanguages(): List<LanguageDomain> {
         return languagesRepository.getSupportedLanguages()
     }
 
@@ -35,7 +33,7 @@ class LanguageInteractor @Inject constructor(
      *
      * @param language The [Language] object representing the selected language.
      */
-    suspend fun saveLanguageChoice(language: Language) {
+    suspend fun saveLanguageChoice(language: LanguageDomain) {
         settingsManager.saveLanguage(language.key)
     }
 
@@ -43,12 +41,12 @@ class LanguageInteractor @Inject constructor(
      * Gets the currently selected language as a Flow.
      *
      * This function retrieves the saved language from the [SettingsManager] and maps it
-     * to the corresponding [Language] object from the supported languages.
+     * to the corresponding [LanguageDomain] object from the supported languages.
      *
-     * @return A [Flow] emitting the selected [Language].
+     * @return A [Flow] emitting the selected [LanguageDomain].
      * @throws IllegalStateException if the saved language does not match any supported languages.
      */
-    fun getSelectedLanguage(): Flow<Language> {
+    fun getSelectedLanguage(): Flow<LanguageDomain> {
         return settingsManager.userLanguage.map { savedLanguage ->
             checkNotNull(getSupportedLanguages().find { it.key == savedLanguage })
         }

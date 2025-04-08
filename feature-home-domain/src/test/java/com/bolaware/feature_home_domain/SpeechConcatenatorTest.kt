@@ -1,6 +1,5 @@
-package com.bolaware.feature_home
+package com.bolaware.feature_home_domain
 
-import com.bolaware.feature_home.domain.SpeechConcatenator
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

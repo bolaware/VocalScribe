@@ -1,9 +1,6 @@
-package com.bolaware.feature_home
+package com.bolaware.feature_home_domain
 
-import com.bolaware.data.languages.Language
-import com.bolaware.data.languages.LanguagesRepository
-import com.bolaware.data.preferences.SettingsManager
-import com.bolaware.feature_home.domain.LanguageInteractor
+import com.bolaware.feature_home_domain.data.LanguageDomain
 import io.mockk.*
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -19,7 +16,8 @@ class LanguageInteractorTest {
 
     @Before
     fun setup() {
-        languageInteractor = LanguageInteractor(settingsManager, languagesRepository)
+        languageInteractor =
+            LanguageInteractor(settingsManager, languagesRepository)
     }
 
     @Test
@@ -67,8 +65,8 @@ class LanguageInteractorTest {
     }
 
     companion object {
-        private val EN = Language("en", "English", "en")
-        private val DE = Language("de", "German", "de")
-        private val FR = Language("fr", "French", "fr")
+        private val EN = LanguageDomain("en", "English", "en")
+        private val DE = LanguageDomain("de", "German", "de")
+        private val FR = LanguageDomain("fr", "French", "fr")
     }
 }

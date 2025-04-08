@@ -62,9 +62,10 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation(project(":core-ui"))
-    implementation(project(":data"))
 
     implementation(project(":speechrecognizer"))
+
+    implementation(project(":feature-home-domain"))
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

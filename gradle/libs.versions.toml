@@ -15,6 +15,7 @@ constraintlayout = "2.2.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
 hilt = "2.50"
+javaxInject = "1"
 hiltNavigationCompose = "1.1.0"
 room = "2.6.1"
 navigation = "2.8.9"
@@ -27,6 +28,7 @@ voskAndroid = "0.3.47"
 timber = "5.0.1"
 material3Android = "1.3.1"
 coroutines = "1.7.3"
+jetbrainsKotlinJvm = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -62,6 +64,10 @@ vosk-android = { module = "com.alphacephei:vosk-android", version.ref = "voskAnd
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+# Coroutines
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+# Javax
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 #accompanist
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 # Jetpack Datastore
@@ -86,4 +92,5 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 

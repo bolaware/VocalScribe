@@ -1,7 +1,7 @@
-package com.bolaware.data.di
+package com.bolaware.vocalscribe.di
 
-import com.bolaware.data.preferences.SettingsManager
 import com.bolaware.data.preferences.SettingsManagerImpl
+import com.bolaware.feature_home_domain.SettingsManager
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
