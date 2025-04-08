@@ -1,13 +1,14 @@
-package com.bolaware.feature_transcript_domain
+package com.bolaware.core_domain
 
-import com.bolaware.core_domain.TranscriptDomain
-import com.bolaware.core_domain.TranscriptRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class TranscriptInteractor @Inject constructor(
+class TranscriptInteractor constructor(
     private val transcriptRepository: TranscriptRepository
 ) {
+
+    suspend fun saveTranscript(text: String) {
+        transcriptRepository.saveTranscript(text)
+    }
 
     fun getTranscripts(): Flow<List<TranscriptDomain>> {
         return transcriptRepository.getTranscripts()

@@ -6,7 +6,6 @@ import com.bolaware.feature_home.ui.LanguageUi
 import com.bolaware.feature_home.ui.RecordState
 import com.bolaware.feature_home_domain.LanguageInteractor
 import com.bolaware.feature_home_domain.SpeechConcatenator
-import com.bolaware.feature_home_domain.TranscriptInteractor
 import com.bolaware.feature_home_domain.data.LanguageDomain
 import com.bolaware.speechrecognizer.SpeechRecognizer
 import com.bolaware.speechrecognizer.SpeechResult

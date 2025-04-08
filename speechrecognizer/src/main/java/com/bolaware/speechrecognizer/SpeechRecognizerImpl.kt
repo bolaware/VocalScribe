@@ -1,7 +1,6 @@
 package com.bolaware.speechrecognizer
 
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.buffer
@@ -15,14 +14,13 @@ import org.vosk.android.StorageService
 import timber.log.Timber
 import java.io.IOException
 import java.util.concurrent.TimeoutException
-import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 private const val TAG = "SpeechRecognizer"
 
-internal class SpeechRecognizerImpl @Inject constructor(
-    @ApplicationContext val context: Context,
+internal class SpeechRecognizerImpl(
+    private val context: Context,
     private val jsonTextExtractor: JsonTextExtractor
 ) : SpeechRecognizer {
 

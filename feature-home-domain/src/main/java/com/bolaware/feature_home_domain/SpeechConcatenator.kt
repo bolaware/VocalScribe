@@ -1,10 +1,7 @@
 package com.bolaware.feature_home_domain
 
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SpeechConcatenator @Inject constructor() {
+class SpeechConcatenator {
 
     private val permanentStrings = mutableListOf<String>()
     private var temporaryString: String? = null

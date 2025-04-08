@@ -27,11 +27,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun TranscriptHistoryScreen(viewModel: TranscriptHistoryViewModel = hiltViewModel()) {
+fun TranscriptHistoryScreen(viewModel: TranscriptHistoryViewModel = koinViewModel()) {
 
     val transcripts by viewModel.transcripts.collectAsStateWithLifecycle()
 

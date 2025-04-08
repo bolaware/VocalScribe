@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavController
@@ -27,6 +26,7 @@ import com.bolaware.core.theme.AppTheme
 import com.bolaware.feature_history.ui.TranscriptHistoryScreen
 import com.bolaware.feature_home.ui.HomeScreen
 import kotlinx.serialization.Serializable
+import org.koin.androidx.compose.KoinAndroidContext
 
 sealed interface AppDestination {
     @Serializable
@@ -36,14 +36,17 @@ sealed interface AppDestination {
     data object TranscriptHistory: AppDestination
 }
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            AppTheme { MyApp() }
+            AppTheme {
+                KoinAndroidContext {
+                    MyApp()
+                }
+            }
         }
     }
 

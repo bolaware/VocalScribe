@@ -2,12 +2,11 @@ package com.bolaware.feature_home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bolaware.core_domain.TranscriptInteractor
 import com.bolaware.feature_home_domain.LanguageInteractor
 import com.bolaware.feature_home_domain.SpeechConcatenator
-import com.bolaware.feature_home_domain.TranscriptInteractor
 import com.bolaware.feature_home_domain.data.LanguageDomain
 import com.bolaware.speechrecognizer.SpeechRecognizer
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,10 +17,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+
+class HomeViewModel(
     private val speechRecognizer: SpeechRecognizer,
     private val speechConcatenator: SpeechConcatenator,
     private val languageInteractor: LanguageInteractor,

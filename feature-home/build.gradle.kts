@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
 
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
-    kotlin("kapt")
-
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -62,14 +58,13 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation(project(":core-ui"))
-
     implementation(project(":speechrecognizer"))
-
+    implementation(project(":core-domain"))
     implementation(project(":feature-home-domain"))
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     implementation(libs.accompanist.permissions)
 
@@ -92,8 +87,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-
-kapt {
-    correctErrorTypes = true
 }

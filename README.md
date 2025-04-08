@@ -1,3 +1,4 @@
+
 # Vocal Scribe
 
 **VoiceScribe** is a voice transcription Android app that accurately and efficiently converts speech into text. It enables users to save and manage their transcriptions for easy access and future reference. The app currently supports **US English** and **German** and operates fully offline.
@@ -36,7 +37,7 @@ VoiceScribe is a **multi-module Clean-architected** Android app built with moder
 - [Datastore Preference](https://developer.android.com/topic/libraries/architecture/datastore) – Stores user preferences in key-value pairs
 
 ### Dependency Injection
-- [Hilt](https://dagger.dev/hilt/) – Simplifies dependency injection and modular architecture
+- [Koin](https://dagger.dev/hilt/) – Light weight kotlin-based DI library
 
 ### Permissions Handling
 - [Accompanist Permissions](https://github.com/google/accompanist/tree/main/permissions) – Manages system permissions in Jetpack Compose
