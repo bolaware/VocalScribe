@@ -61,7 +61,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":core-domain"))
     implementation(project(":feature-home-domain"))
-    compileOnly(project(":speechrecognizer"))
+    implementation(project(":speechrecognizer"))
 
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.android)
