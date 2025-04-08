@@ -4,7 +4,6 @@
 
 https://github.com/user-attachments/assets/ecd6b516-2444-4d93-8bcd-fc3ca66bdd26
 
-
 ## Features
 
 - **Accurate Transcription** of English and German speech
@@ -18,7 +17,7 @@ https://github.com/user-attachments/assets/ecd6b516-2444-4d93-8bcd-fc3ca66bdd26
 
 ## Technical Breakdown
 
-VoiceScribe is a **multi-module MVVM-architected** Android app built with modern development practices. It utilizes the following technologies and libraries:
+VoiceScribe is a **multi-module Clean-architected** Android app built with modern development practices. It utilizes the following technologies and libraries:
 
 ### Programming Language
 - [Kotlin](https://kotlinlang.org/) – Modern language for Android development, optimized for concurrency and multi-threading
@@ -48,17 +47,20 @@ VoiceScribe is a **multi-module MVVM-architected** Android app built with modern
 
 ## Architecture
 
-VoiceScribe follows **MVVM (Model-View-ViewModel)** principles to ensure maintainability and scalability. The app is designed using a **modular architecture**, enabling independent feature development and easier testing.
+VoiceScribe follows **Clean Architecture** principles to ensure maintainability and scalability. The app is designed using a **modular architecture**, enabling independent feature development and easier testing.
 
 ### Modules Overview
 
-![Vocal Scribe Architecture Diagram](https://github.com/user-attachments/assets/c98b41d2-88a2-4581-babc-7e3aa7309017)
+![Vocal Scribe Architecture Diagram](https://github.com/user-attachments/assets/133ef6de-b151-4ef3-96e5-11386f499bfd)
 
 
 - `:app` – The main Android application
 - `:core-ui` – Base module containing common UI components, styling, and themes
+- `:core-ui` – Base module containing common business logic
 - `:feature-home` – Manages real-time transcription on the home screen
-- `:feature-history` – Handles viewing, updating, and deleting saved transcripts
+- `:feature-home-domain` – Contains business logic for home feature
+- `:feature-transcript` – Handles viewing, updating, and deleting saved transcripts
+- `:feature-transcript-domain` – Contains business logic for transcript feature
 - `:data` – Manages data persistence and repository pattern
 - `:speechrecognizer` – Speech recognition logic, exposing the `SpeechRecognizer` interface
 - `:models` – Storage for AI-based speech recognition models
