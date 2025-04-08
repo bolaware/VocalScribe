@@ -7,7 +7,7 @@ import com.bolaware.feature_history.ui.TranscriptHistoryViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-val transcriptModule = module {
+val transcriptFeatureModule = module {
     single<TimestampFormatter> { AndroidTimestampFormatter() }
     viewModel { TranscriptHistoryViewModel(TranscriptInteractor(get()), get()) }
 }

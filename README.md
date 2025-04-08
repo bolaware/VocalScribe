@@ -1,4 +1,3 @@
-
 # Vocal Scribe
 
 **VoiceScribe** is a voice transcription Android app that accurately and efficiently converts speech into text. It enables users to save and manage their transcriptions for easy access and future reference. The app currently supports **US English** and **German** and operates fully offline.

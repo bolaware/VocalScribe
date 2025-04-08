@@ -7,7 +7,7 @@ import com.bolaware.feature_home_domain.SpeechConcatenator
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-val homeModule = module {
+val homeFeatureModule = module {
     viewModel {
         HomeViewModel(
             get(),
