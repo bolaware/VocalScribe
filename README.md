@@ -56,7 +56,7 @@ VoiceScribe follows **Clean Architecture** principles to ensure maintainability 
 
 - `:app` – The main Android application
 - `:core-ui` – Base module containing common UI components, styling, and themes
-- `:core-ui` – Base module containing common business logic
+- `:core-domain` – Base module containing common business logic
 - `:feature-home` – Manages real-time transcription on the home screen
 - `:feature-home-domain` – Contains business logic for home feature
 - `:feature-transcript` – Handles viewing, updating, and deleting saved transcripts
