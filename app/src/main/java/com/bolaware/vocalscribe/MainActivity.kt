@@ -43,9 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             AppTheme {
-                KoinAndroidContext {
-                    MyApp()
-                }
+                MyApp()
             }
         }
     }
