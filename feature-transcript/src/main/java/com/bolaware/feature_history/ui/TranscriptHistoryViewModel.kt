@@ -2,18 +2,15 @@ package com.bolaware.feature_history.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bolaware.feature_transcript_domain.TranscriptInteractor
+import com.bolaware.core_domain.TranscriptInteractor
 import com.bolaware.feature_history.timestamp.TimestampFormatter
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TranscriptHistoryViewModel @Inject constructor(
+class TranscriptHistoryViewModel(
     private val transcriptInteractor: TranscriptInteractor,
     private val timestampFormatter: TimestampFormatter
 ) : ViewModel() {

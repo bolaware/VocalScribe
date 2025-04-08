@@ -36,7 +36,7 @@ VoiceScribe is a **multi-module Clean-architected** Android app built with moder
 - [Datastore Preference](https://developer.android.com/topic/libraries/architecture/datastore) – Stores user preferences in key-value pairs
 
 ### Dependency Injection
-- [Hilt](https://dagger.dev/hilt/) – Simplifies dependency injection and modular architecture
+- [Koin](https://insert-koin.io/) – Lightweight kotlin-native DI library
 
 ### Permissions Handling
 - [Accompanist Permissions](https://github.com/google/accompanist/tree/main/permissions) – Manages system permissions in Jetpack Compose

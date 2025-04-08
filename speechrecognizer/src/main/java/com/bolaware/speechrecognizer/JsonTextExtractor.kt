@@ -1,10 +1,8 @@
 package com.bolaware.speechrecognizer
 
 import org.json.JSONObject
-import javax.inject.Inject
-import javax.inject.Singleton
 
-class JsonTextExtractor @Inject constructor() {
+class JsonTextExtractor {
 
     fun extractText(jsonString: String): String? {
         return try {

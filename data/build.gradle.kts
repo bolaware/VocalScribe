@@ -2,9 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 
-    alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
-    kotlin("kapt")
 }
 
 android {
@@ -42,14 +40,13 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
 
     implementation(libs.datastore.preferences)
 
     implementation(project(":core-domain"))
     implementation(project(":feature-home-domain"))
-    implementation(project(":feature-transcript-domain"))
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
@@ -58,8 +55,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-
-kapt {
-    correctErrorTypes = true
 }

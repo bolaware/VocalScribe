@@ -3,7 +3,6 @@ package com.bolaware.feature_home_domain
 import com.bolaware.feature_home_domain.data.LanguageDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 /**
  * Interactor responsible for managing language preferences.
@@ -14,7 +13,7 @@ import javax.inject.Inject
  * @property settingsManager Handles saving and retrieving user language preferences.
  * @property languagesRepository Provides the list of supported languages.
  */
-class LanguageInteractor @Inject constructor(
+class LanguageInteractor(
     private val settingsManager: SettingsManager,
     private val languagesRepository: LanguagesRepository
 ) {

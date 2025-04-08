@@ -55,17 +55,17 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.bolaware.core.theme.SunRed
 import com.bolaware.core.ui.AutoScrollingTextField
 import com.bolaware.feature_home.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
 
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     var requestedPermission by rememberSaveable { mutableStateOf(false) }

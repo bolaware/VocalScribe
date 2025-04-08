@@ -5,15 +5,13 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.bolaware.data.languages.SupportedLanguages
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 private val Context.dataStore by preferencesDataStore(name = "user_settings")
 
-class SettingsManagerImpl @Inject constructor(
-    @ApplicationContext val context: Context,
+class SettingsManagerImpl(
+    private val context: Context,
 ) : com.bolaware.feature_home_domain.SettingsManager {
 
     companion object {

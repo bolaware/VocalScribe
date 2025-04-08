@@ -1,9 +1,8 @@
 package com.bolaware.data.languages
 
-import javax.inject.Inject
+import com.bolaware.feature_home_domain.LanguagesRepository
 
-class LanguagesRepositoryImpl @Inject constructor():
-    com.bolaware.feature_home_domain.LanguagesRepository {
+class LanguagesRepositoryImpl : LanguagesRepository {
 
     override fun getSupportedLanguages(): List<com.bolaware.feature_home_domain.data.LanguageDomain> {
         return SupportedLanguages.entries.map { it.language.toDomain() }

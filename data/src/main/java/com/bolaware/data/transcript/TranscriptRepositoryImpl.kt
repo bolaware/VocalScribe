@@ -4,9 +4,8 @@ import com.bolaware.core_domain.TranscriptRepository
 import com.bolaware.data.database.TranscriptDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class TranscriptRepositoryImpl @Inject constructor(
+class TranscriptRepositoryImpl(
     private val dao: TranscriptDao
 ): TranscriptRepository {
 

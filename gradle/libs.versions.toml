@@ -14,13 +14,11 @@ accompanist = "0.34.0"
 constraintlayout = "2.2.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
-hilt = "2.50"
-javaxInject = "1"
-hiltNavigationCompose = "1.1.0"
 room = "2.6.1"
 navigation = "2.8.9"
 mockk = "1.13.17"
 turbine = "1.2.0"
+koin-bom = "4.0.3"
 composebom = "2025.03.00"
 composeActivity = "1.10.1"
 lifecycle = "2.8.7"
@@ -60,14 +58,13 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 # Speech recognition
 vosk-android = { module = "com.alphacephei:vosk-android", version.ref = "voskAndroid" }
-# Hilt
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+#Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+# koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 # Coroutines
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-# Javax
-javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 #accompanist
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 # Jetpack Datastore
@@ -89,7 +86,6 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
