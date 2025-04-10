@@ -1,5 +1,6 @@
-package com.bolaware.data.local.languages
+package com.bolaware.data.repository
 
+import com.bolaware.data.local.languages.Language
 import com.bolaware.feature_home_domain.LanguagesRepository
 
 class LanguagesRepositoryImpl : LanguagesRepository {

@@ -1,6 +1,8 @@
-package com.bolaware.data.local.transcript
+package com.bolaware.data.repository
 
 import com.bolaware.core_domain.TranscriptRepository
+import com.bolaware.data.local.transcript.Transcript
+import com.bolaware.data.local.transcript.TranscriptDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
