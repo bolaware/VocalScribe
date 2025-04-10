@@ -1,10 +1,11 @@
-package com.bolaware.data.database
+package com.bolaware.data.local.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.bolaware.data.transcript.Transcript
+import com.bolaware.data.local.transcript.Transcript
+import com.bolaware.data.local.transcript.TranscriptDao
 
 @Database(entities = [Transcript::class], version = 1, exportSchema = false)
 internal abstract class AppDatabase : RoomDatabase() {

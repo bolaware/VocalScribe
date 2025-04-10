@@ -1,7 +1,7 @@
 package com.bolaware.vocalscribe
 
 import android.app.Application
-import com.bolaware.data.di.dataModule
+import com.bolaware.data.local.di.localModule
 import com.bolaware.feature_history.di.transcriptFeatureModule
 import com.bolaware.feature_home.di.homeFeatureModule
 import com.bolaware.speechrecognizer.di.speechRecognizerModule
@@ -23,7 +23,7 @@ class VocalScribeApp : Application() {
                 appModule,
                 homeFeatureModule,
                 transcriptFeatureModule,
-                dataModule,
+                localModule,
                 speechRecognizerModule
             )
         }

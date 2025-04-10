@@ -1,7 +1,6 @@
-package com.bolaware.data.database
+package com.bolaware.data.local.transcript
 
 import androidx.room.*
-import com.bolaware.data.transcript.Transcript
 import kotlinx.coroutines.flow.Flow
 
 @Dao

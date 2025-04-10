@@ -1,4 +1,4 @@
-package com.bolaware.data.transcript
+package com.bolaware.data.local.transcript
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

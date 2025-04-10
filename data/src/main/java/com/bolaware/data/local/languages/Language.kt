@@ -1,4 +1,4 @@
-package com.bolaware.data.languages
+package com.bolaware.data.local.languages
 
 internal data class Language(
     val key: String,

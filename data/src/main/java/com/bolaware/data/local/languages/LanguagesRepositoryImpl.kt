@@ -1,4 +1,4 @@
-package com.bolaware.data.languages
+package com.bolaware.data.local.languages
 
 import com.bolaware.feature_home_domain.LanguagesRepository
 
